@@ -33,6 +33,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
+
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
@@ -54,6 +55,9 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+let people = constdata
+let person = constdata.firstname + constdata.lastname
+searchByName(people)
 
 function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars);
@@ -66,8 +70,9 @@ function searchByName(people){
     else{
       return false;
     }
-  })
+  });
   // TODO: find the person using the name they entered
+  console.log(foundPerson);
   return foundPerson;
 }
 
