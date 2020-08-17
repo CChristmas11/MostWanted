@@ -2,7 +2,6 @@
 /*
 Build all of your functions for displaying and gathering information below (GUI).
 */
-
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -10,15 +9,19 @@ function app(people){
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
+     
       break;
     case 'no':
-      // TODO: search by traits
+      searchResults = searchByTrait(people);
+     /////////////////////// displayPeople();
+     
       break;
       default:
     app(people); // restart app
       break;
   }
   
+
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
@@ -62,14 +65,35 @@ function searchByName(people){
   let foundPerson = people.filter(function(person){
     if(person.firstName === firstName && person.lastName === lastName){
       return true;
+     
     }
     else{
       return false;
     }
   })
-  // TODO: find the person using the name they entered
-  return foundPerson;
+
+  if (foundPerson.length > 1) {
+
+
+
+    return undefined;
+  }
+
+ return foundPerson[0];
+
+
 }
+   
+  // TODO: find the person using the name they entered
+///////////////////////////alert(foundPerson);
+
+
+
+
+
+
+
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -78,14 +102,36 @@ function displayPeople(people){
   }).join("\n"));
 }
 
+
 function displayPerson(person){
+  //alert()
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB:" + person.dob + "\n";
+  personInfo += "Height" + person.height + "\n";
+  personInfo += "Eye Color" + person.eyeColor + "\n";
+  personInfo += "Occupation" + person.occupation + "\n";
+  /////////////////////personInfo += "Parents" + 
+  //////////////////////personInfo += "Spouse" + 
+
+
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+  app(peopl);
 }
+
+
+
+
+
+
+
+
+
+
 
 // function that prompts and validates user input
 function promptFor(question, valid){
