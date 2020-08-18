@@ -1,5 +1,5 @@
 // You may modify this for testing purposes.
-constdata = [
+const data = [
 	{
 		"id": 272822514,
 		"firstName": "Billy",
