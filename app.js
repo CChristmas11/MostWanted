@@ -79,10 +79,19 @@ function searchByName(people){
     else{
       return false;
     }
+<<<<<<< HEAD
   });
 
   if (foundPerson.length > 1) {
 
+=======
+  })
+
+  if (foundPerson.length > 1) {
+
+
+
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
     return undefined;
   }
 
@@ -111,13 +120,17 @@ function displayPeople(people){
 
 
 function displayPerson(person){
+<<<<<<< HEAD
   
+=======
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
   //alert()
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
+<<<<<<< HEAD
   personInfo += "DOB: " + person.dob + "\n";
   personInfo += "Height: " + person.height + '"' + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
@@ -126,11 +139,22 @@ function displayPerson(person){
   personInfo += "Spouse: " + person.spouse; 
 
   
+=======
+  personInfo += "DOB:" + person.dob + "\n";
+  personInfo += "Height" + person.height + "\n";
+  personInfo += "Eye Color" + person.eyeColor + "\n";
+  personInfo += "Occupation" + person.occupation + "\n";
+  /////////////////////personInfo += "Parents" + 
+  //////////////////////personInfo += "Spouse" + 
+
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
 
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+  app(peopl);
 }
 
+<<<<<<< HEAD
 //display parents, spouse, & siblings
 function displayFamily(person){}
 
@@ -138,6 +162,8 @@ function displayFamily(person){}
 function displayDescendants(person){}
     
 
+=======
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
 
 
 
