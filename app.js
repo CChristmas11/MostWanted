@@ -52,7 +52,7 @@ function mainMenu(person, people){
     displayPerson(person);
     break;
     case "family":
-    displayResults = displayFamily(people); ("This person's parent's are " + person.parents + " , and their spouse is " + person.spouse + ".");
+    displayFamily(person);
     break;
     case "descendants":
     displayResults = "This person's desendants are " + person.children + ".";
@@ -79,11 +79,9 @@ function searchByName(people){
     else{
       return false;
     }
-  })
+  });
 
   if (foundPerson.length > 1) {
-
-
 
     return undefined;
   }
@@ -137,19 +135,37 @@ function displayPeople(people){
 
 
 function displayPerson(person){
+  
   //alert()
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + '"' + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "Spouse: " + person.spouse + "\n";
 
-
+  
 
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
+}
+
+//display parents, spouse, & siblings
+function displayFamily(person){
+  
+  let personFamily = "Parents: " + person.parents + "\n";
+    personFamily += "Spouse: " + person.currentspouse + "\n";
+    personFamily+= "Siblings: " + person.currentspouse;
+    // need to solve how too get siblings above instead of current spouse on 3rd line
+  
+  
+  alert(personFamily);
+}
 
 }
 
