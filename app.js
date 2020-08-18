@@ -22,18 +22,16 @@ function app(people){
       break;
     case 'no':
       searchResults = searchByTrait(people);
-     /////////////////////// displayPeople();
      
       break;
       default:
     app(people); // restart app
       break;
   }
-  
-
-  // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
-}
+  }
+
+ 
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
@@ -91,35 +89,6 @@ function searchByName(people){
 
 }
    
-  // TODO: find the person using the name they entered
-///////////////////////////alert(foundPerson);
-
-
-/*function searchByTrait(people){
-  let firstName = promptFor("What is the person's first name?", chars);
-  let lastName = promptFor("What is the person's last name?", chars);
-
-  let foundPerson = people.filter(function(person){
-    if(person.firstName === firstName && person.lastName === lastName){
-      return true;
-     
-    }
-    else{
-      return false;
-    }
-  })
-
-  if (foundPerson.length > 1) {
-
-
-
-    return undefined;
-  }
-
- return foundPerson[0];
-
-
-}*/
 
 
 
@@ -167,7 +136,7 @@ function displayFamily(person){
   alert(personFamily);
 }
 
-}
+
 
 
 
@@ -194,5 +163,7 @@ function yesNo(input){
 
 // helper function to pass in as default promptFor validation
 function chars(input){
-  return true; // default validation only
+  return true; // default validation 
 }
+
+
