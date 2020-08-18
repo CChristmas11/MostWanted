@@ -20,7 +20,7 @@ function app(people){
     app(people); // restart app
       break;
   }
-  
+  m
 
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
@@ -88,7 +88,31 @@ function searchByName(people){
 ///////////////////////////alert(foundPerson);
 
 
+/*function searchByTrait(people){
+  let firstName = promptFor("What is the person's first name?", chars);
+  let lastName = promptFor("What is the person's last name?", chars);
 
+  let foundPerson = people.filter(function(person){
+    if(person.firstName === firstName && person.lastName === lastName){
+      return true;
+     
+    }
+    else{
+      return false;
+    }
+  })
+
+  if (foundPerson.length > 1) {
+
+
+
+    return undefined;
+  }
+
+ return foundPerson[0];
+
+
+}*/
 
 
 
@@ -114,13 +138,12 @@ function displayPerson(person){
   personInfo += "Height" + person.height + "\n";
   personInfo += "Eye Color" + person.eyeColor + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
-  /////////////////////personInfo += "Parents" + 
-  //////////////////////personInfo += "Spouse" + 
-
+  personInfo += "Parents" + person.parents + "/n";
+  personInfo += "Spouse" + person.spouse + "/n";
 
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
-  app(peopl);
+
 }
 
 
