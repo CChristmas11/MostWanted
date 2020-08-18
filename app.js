@@ -1,3 +1,12 @@
+/*(5 points): As a developer, I want to make consistent commits with good, descriptive messages.
+(5 points): As a developer, I want to run validation on any user input, ensuring that a user is re-prompted when they provide invalid input.
+(10 points): As a developer, I will send a copy of these user stories to the instructors at the end of each workday, with user stories fully implemented highlighted in green and partially implemented highlighted in yellow. 
+(10 points): As a user, I want to be able to search for someone based on a single criterion.  (You should be able to find and return a list of people who match the search)
+(20 points): As a user, I want to be able to search for someone based on 2-5 criteria.  (I.e if you search for Gender: male and Eye Color: blue, you should get back a list of people who match the search)
+(15 points): As a user, I want to be able to look up someone’s information after I find them with the program (display values for the various traits of the found person).
+(25 points): As a user, I want to be able look up someone’s descendants after I find them with the program (display the names of the descendants), using recursion.
+(20 points): As a user, I want to be able look up someone’s immediate family members after I find them with the program (display the names of the family members and their relation to the found person.  Parents, spouse, and siblings).
+*/
 "use strict"
 /*
 Build all of your functions for displaying and gathering information below (GUI).
@@ -37,16 +46,16 @@ function mainMenu(person, people){
   }
 
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
-
+  let displayResults;
   switch(displayOption){
     case "info":
-    // TODO: get person's info
+    displayPerson(person);
     break;
     case "family":
-    // TODO: get person's family
+    displayResults = displayFamily(people); ("This person's parent's are " + person.parents + " , and their spouse is " + person.spouse + ".");
     break;
     case "descendants":
-    // TODO: get person's descendants
+    displayResults = "This person's desendants are " + person.children + ".";
     break;
     case "restart":
     app(people); // restart
@@ -70,12 +79,19 @@ function searchByName(people){
     else{
       return false;
     }
+<<<<<<< HEAD
+  });
+
+  if (foundPerson.length > 1) {
+
+=======
   })
 
   if (foundPerson.length > 1) {
 
 
 
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
     return undefined;
   }
 
@@ -128,24 +144,55 @@ function displayPeople(people){
 
 
 function displayPerson(person){
+<<<<<<< HEAD
+  
+=======
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
   //alert()
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
+<<<<<<< HEAD
+  personInfo += "DOB: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + '"' + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "Spouse: " + person.spouse; 
+
+  
+=======
   personInfo += "DOB:" + person.dob + "\n";
   personInfo += "Height" + person.height + "\n";
   personInfo += "Eye Color" + person.eyeColor + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
+<<<<<<< HEAD
   personInfo += "Parents" + person.parents + "/n";
   personInfo += "Spouse" + person.spouse + "/n";
+=======
+  /////////////////////personInfo += "Parents" + 
+  //////////////////////personInfo += "Spouse" + 
+
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
+>>>>>>> f4c92655a910e10261186819aaa6784d199766f6
 
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 
 }
 
+<<<<<<< HEAD
+//display parents, spouse, & siblings
+function displayFamily(person){}
+
+//display parents, spouse, & siblings
+function displayDescendants(person){}
+    
+
+=======
+>>>>>>> c9128626f0cce02605164acbb9db2cf0999e78b8
 
 
 
