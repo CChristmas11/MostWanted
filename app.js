@@ -4,7 +4,7 @@
 (10 points): As a user, I want to be able to search for someone based on a single criterion.  (You should be able to find and return a list of people who match the search)
 (20 points): As a user, I want to be able to search for someone based on 2-5 criteria.  (I.e if you search for Gender: male and Eye Color: blue, you should get back a list of people who match the search)
 (15 points): As a user, I want to be able to look up someone’s information after I find them with the program (display values for the various traits of the found person).
-(25 points): As a user, I want to be able look up someone’s descendants after I find them with the program (display the names of the descendants), using recursion.
+(25 points): As a user, I want to be able look up someone’s descendants after I find them with the program (display the names of the descendants), USING RECURSION.
 (20 points): As a user, I want to be able look up someone’s immediate family members after I find them with the program (display the names of the family members and their relation to the found person.  Parents, spouse, and siblings).
 */
 "use strict"
@@ -18,17 +18,30 @@ function app(people){
   switch(searchType){
     case 'yes':
       searchResults = searchByName(people);
-     
-      break;
+    break;
+
+
     case 'no':
       searchResults = searchByTrait(people);
-     
+     searchType;
       break;
+     
+
       default:
     app(people); // restart app
       break;
   }
   mainMenu(searchResults, people);
+  
+  //   case 'no':
+  //     searchResults = searchByTrait(people);
+     
+  //     break;
+  //     default:
+  //   app(people); // restart app
+  //     break;
+  // }
+  // mainMenu(searchResults, people);
   }
 
  
@@ -52,8 +65,10 @@ function mainMenu(person, people){
     case "family":
     displayFamily(person);
     break;
+    case "gender":
+      gender(people);
     case "descendants":
-    displayResults = "This person's desendants are " + person.children + ".";
+    displayResults = "I don't know what you are talking about."
     break;
     case "restart":
     app(people); // restart
@@ -90,18 +105,16 @@ function searchByName(people){
 }
    
 
-
-
-
+ 
 
 
 // alerts a list of people
 function displayPeople(people){
+  
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
   }).join("\n"));
 }
-
 
 function displayPerson(person){
   
@@ -112,17 +125,31 @@ function displayPerson(person){
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
+  /////////NEED TO: CONVERT DOB TO AGE - FUNCTION STARTED BELOW
   personInfo += "Height: " + person.height + '"' + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
-  personInfo += "Spouse: " + person.spouse + "\n";
+  personInfo += "Spouse: " + person.currentSpouse + "\n";
 
-  
-
-  // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
+////function that changes spouse ID to spouse name or prints "none" if no spouse ID for this person
+///function spouseName(person)
+
+////function that calculates age - NEEDS WORK!
+// function getAge(person) {
+// var age = Date.now - (personInfo.person.dob)
+// let results = people.filter(function(person){{
+
+//   if (person.dob === age){   
+//     return true;
+//     }
+//     else{
+//     return false;
+//     }
+// }})
+// }
 
 //display parents, spouse, & siblings
 function displayFamily(person){
@@ -132,19 +159,46 @@ function displayFamily(person){
     personFamily+= "Siblings: " + person.currentspouse;
     // need to solve how too get siblings above instead of current spouse on 3rd line
   
-  
-  alert(personFamily);
+  alert("We found:" + "\n" + personFamily);
+}
+
+////NEED TO have function get the parent/Spouse IDs and convert to names
+function getParents(person){
+  return person.parents;
+}
+
+function getSpouse(person){
+  return person.currentSpouse;
+}
+
+ //////NOTICE- PLACEHOLDER ONLY; NEED TO filter through the data set to find people wih same parents to get siblings
+ function getSiblings(person){
+  return person.currentSpouse;
 }
 
 
+function searchByTrait(person){
+  let trait = prompt("Would you like to search by gender, age, eye color, weight or height? " )
+  let results = [];
+  switch(trait){
+    case "gender":
+      results = gender(person);
+      displayPeople(results);
+    case "age"  :
+      results = age(person);
+      displayPeople(results);
+    case "eye color":
+      results = eyeColor(person);
+      displayPeople(results);
+    case "weight":
+      results = weight(person);
+      displayPeople(results);
+      case "height":
+      results = height(person);
+      displayPeople(results);
 
 
-
-
-
-
-
-
+}}
 
 
 
@@ -155,6 +209,95 @@ function promptFor(question, valid){
   } while(!response || !valid(response));
   return response;
 }
+
+function gender(people){
+  
+  
+  let genderSearch = prompt("What is their gender? Male or Female?").toLowerCase()
+
+  let results = people.filter(function(person){{
+
+    if (person.gender === genderSearch){   
+      return true;
+      }
+      else{
+      return false;
+      }
+  }})
+
+  displayPeople(results);
+}
+
+function age(people){
+  
+  
+  let ageSearch = prompt("What is their age?")
+
+  let results = people.filter(function(person){{
+
+    if (getAge.person === ageSearch){   
+      return true;
+      }
+      else{
+      return false;
+      }
+  }})
+
+  displayPeople(results);
+}
+
+function eyeColor(people){
+  
+  let eyeColorSearch = prompt("What is their eye color?").toLowerCase()
+
+  let results = people.filter(function(person){{
+
+    if (person.eyeColor === eyeColorSearch){   
+      return true;
+      }
+      else{
+      return false;
+      }
+  }})
+
+  displayPeople(results);
+}
+
+  function weight(people){
+  
+    let weightSearch = prompt("What is their weight?");
+  
+    let results = people.filter(function(person){{
+  
+      if (person.weight === weightSearch){   
+        return true;
+        }
+        else{
+        return false;
+        }
+    }})
+  
+    displayPeople(results);
+  }
+
+    function height(people){
+  
+      let heightSearch = prompt("What is their height in inches?");
+    
+      let results = people.filter(function(person){{
+    
+        if (person.height === heightSearch){   
+          return true;
+          }
+          else{
+          return false;
+          }
+      }})
+    
+      displayPeople(results);
+    }
+  
+
 
 // helper function to pass into promptFor to validate yes/no answers
 function yesNo(input){
