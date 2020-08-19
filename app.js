@@ -63,12 +63,12 @@ function mainMenu(person, people){
     displayPerson(person);
     break;
     case "family":
-    displayFamily(person);
+    displayFamily(person, people);
     break;
     case "gender":
       gender(people);
     case "descendants":
-    displayResults = "I don't know what you are talking about."
+    displayDescendants (person, people);
     break;
     case "restart":
     app(people); // restart
@@ -87,7 +87,6 @@ function searchByName(people){
   let foundPerson = people.filter(function(person){
     if(person.firstName === firstName && person.lastName === lastName){
       return true;
-     
     }
     else{
       return false;
@@ -116,17 +115,16 @@ function displayPeople(people){
   }).join("\n"));
 }
 
+
+//function to print all the info about a person; height, weight, age, name, occupation, eye color
 function displayPerson(person){
   
-  //alert()
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
-  /////////NEED TO: CONVERT DOB TO AGE - FUNCTION STARTED BELOW
   personInfo += "Height: " + person.height + '"' + "\n";
+  personInfo += "Weight: " + person.weight + 'lbs' + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
@@ -134,8 +132,6 @@ function displayPerson(person){
 
   alert(personInfo);
 }
-////function that changes spouse ID to spouse name or prints "none" if no spouse ID for this person
-///function spouseName(person)
 
 ////function that calculates age - NEEDS WORK!
 // function getAge(person) {
@@ -150,32 +146,59 @@ function displayPerson(person){
 //     }
 // }})
 // }
+//function calculateAge(person) {
+  ///let today = new Date();
+  ///let age = today.getFullYear() - (person.dob).getFullYear();
+  ///let m = today.getMonth() - (person.dob).getMonth();
+  ///if (m < 0 || (m === 0 && today.getDate() < (person.dob).getDate())) {
+  ///age--;
+  ///}
+  ///console.log(age);
+  ///return age;
+///}
 
-//display parents, spouse, & siblings
-function displayFamily(person){
+//displaying names  vs objects//siblings
+function displayFamily(person, people){
   
-  let personFamily = "Parents: " + person.parents + "\n";
-    personFamily += "Spouse: " + person.currentspouse + "\n";
-    personFamily+= "Siblings: " + person.currentspouse;
-    // need to solve how too get siblings above instead of current spouse on 3rd line
+  let spouse = getSpouse(person, people);
+  let parents = getParents (person, people);
+  let siblings = getSiblings (person, people); 
+  let personFamily = "Spouse: " + spouse [0].firstName + " " + spouse[0].lastName + "\n";
+  personFamily  += "Parents: " + parents [0].firstName + " " + parents[0].lastName + ", " 
+  + parents [1].firstName + " " + parents[1].lastName + "\n"; 
+  personFamily += "Siblings: " + siblings
+
+
   
-  alert("We found:" + "\n" + personFamily);
+  alert("We found the following family members:" + "\n" + personFamily);
 }
 
-////NEED TO have function get the parent/Spouse IDs and convert to names
-function getParents(person){
-  return person.parents;
-}
-
-function getSpouse(person){
-  return person.currentSpouse;
-}
-
- //////NOTICE- PLACEHOLDER ONLY; NEED TO filter through the data set to find people wih same parents to get siblings
- function getSiblings(person){
-  return person.currentSpouse;
-}
-
+function getParents(foundPerson, people){
+  ///foundPerson is Jasmine; two parents
+  
+  let personParents = people.filter(function(potentialParent){
+      if(foundPerson.parents.includes(potentialParent.id)){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+    return personParents;
+  }
+  
+  
+function getSpouse(foundPerson, people){
+  let personCurrentSpouse = people.filter(function(person){
+      if(foundPerson.id === person.currentSpouse){
+        return true;
+      }
+      else{
+        return false;
+      }
+    })
+    return personCurrentSpouse;
+  }
 
 function searchByTrait(person){
   let trait = prompt("Would you like to search by gender, age, eye color, weight or height? " )
@@ -199,10 +222,46 @@ function searchByTrait(person){
 
 
 }}
+  
+ function getSiblings(foundPerson, people){
+  let personSiblings= people.filter(function(potentialSiblings){
+    
+    if(foundPerson.parents.includes(potentialSiblings.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  
+  })
+  return personSiblings;
+}
+///framework for display descendants function
+
+function displayDescendants(foundPerson, people){
+  
+  let parents = getParents (foundPerson, people);
+  let children = getDescendants (person, people); 
+  let personChildren = "Children: " + children
+
+  alert("We found the following family members:" + "\n" + personChildren);
+}
+function getDescendants(foundPerson, people){
+  let personDescendants= people.filter(function(potentialDescendants){
+    
+    if(foundPerson.parents.includes(potentialDescendants.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  
+  })
+  return personDescendants;
+}
 
 
-
-// function that prompts and validates user input
+ // function that prompts and validates user input
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
