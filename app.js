@@ -52,7 +52,7 @@ function mainMenu(person, people){
     displayPerson(person);
     break;
     case "family":
-    displayFamily(person);
+    displayFamily(person, people);
     break;
     case "descendants":
     displayResults = "I don't know what you are talking about."
@@ -118,7 +118,6 @@ function displayPerson(person){
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "DOB: " + person.dob + "\n";
-  /////////NEED TO: CONVERT DOB TO AGE - FUNCTION STARTED BELOW
   personInfo += "Height: " + person.height + '"' + "\n";
   personInfo += "Weight: " + person.weight + 'lbs' + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
@@ -128,41 +127,44 @@ function displayPerson(person){
 
   alert(personInfo);
 }
-
+/////////NEED TO: CONVERT DOB TO AGE - 
 ////NEED function that changes spouse ID to spouse name or prints "none" if no spouse ID for this person
 ////NEED function that changes parents ID to names 
 
 
 ////NEEDS WORK - function that calculates age
-function calculateAge(person) {
-  let today = new Date();
-  let age = today.getFullYear() - (person.dob).getFullYear();
-  let m = today.getMonth() - (person.dob).getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < (person.dob).getDate())) {
-  age--;
-  }
-  console.log(age);
-  return age;
-}
+//function calculateAge(person) {
+  ///let today = new Date();
+  ///let age = today.getFullYear() - (person.dob).getFullYear();
+  ///let m = today.getMonth() - (person.dob).getMonth();
+  ///if (m < 0 || (m === 0 && today.getDate() < (person.dob).getDate())) {
+  ///age--;
+  ///}
+  ///console.log(age);
+  ///return age;
+///}
 
-//NEEDS WORK - function to display parents, spouse, & siblings
-function displayFamily(person){
+//NEEDS WORK - ON displaying names  vs objects
+function displayFamily(person, people){
   
-  let personFamily = "Parents: " + getParents(person) + "\n";
-    personFamily += "Spouse: " + getSpouse(person) + "\n";
-    personFamily+= "Siblings: " + getSiblings(person);
+  let spouse = getSpouse(person, people);
+  let parents = getParents (person, people);
+  let siblings = getSiblings (person, people); 
+  let personFamily = "Spouse: " + spouse [0].firstName + " " + spouse[0].lastName + "\n";
+  personFamily  += "Parents: " + parents [0].firstName + " " + parents[0].lastName + ", " 
+  + parents [1].firstName + " " + parents[1].lastName + "\n"; 
+  personFamily += "Siblings: " + siblings
+
+
   
   alert("We found the following family members:" + "\n" + personFamily);
 }
 
-////NEED TO have function to get the parent/Spouse IDs and convert to names???
-function getParents(person){
-  return person.parents;
-}
-
 function getParents(foundPerson, people){
-  let personParents = people.filter(function(person){
-      if(foundPerson.id === person.parents){
+  ///foundPerson is Jasmine; two parents
+  
+  let personParents = people.filter(function(potentialParent){
+      if(foundPerson.parents.includes(potentialParent.id)){
         return true;
       }
       else{
@@ -171,8 +173,8 @@ function getParents(foundPerson, people){
     })
     return personParents;
   }
-
-
+  
+  
 function getSpouse(foundPerson, people){
   let personCurrentSpouse = people.filter(function(person){
       if(foundPerson.id === person.currentSpouse){
@@ -185,12 +187,25 @@ function getSpouse(foundPerson, people){
     return personCurrentSpouse;
   }
 
- ///////PLACEHOLDER ONLY; NEED TO filter through the data set to find people wih same parents to get siblings
- function getSiblings(person){
-  return ;
+  
+ function getSiblings(foundPerson, people){
+  let personSiblings= people.filter(function(potentialSiblings){
+    
+    if(foundPerson.parents.includes(potentialSiblings.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  
+  })
+  return personSiblings;
+}
 
 
-// function that prompts and validates user input
+
+
+ // function that prompts and validates user input
 function promptFor(question, valid){
   do{
     var response = prompt(question).trim();
@@ -207,4 +222,3 @@ function yesNo(input){
 function chars(input){
   return true; // default validation only
 }
- }
