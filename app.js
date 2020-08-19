@@ -45,7 +45,7 @@ function mainMenu(person, people){
     return app(people); // restart
   }
 
-  let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
+  let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'", chars);
   let displayResults;
   switch(displayOption){
     case "info":
@@ -55,7 +55,7 @@ function mainMenu(person, people){
     displayFamily(person, people);
     break;
     case "descendants":
-    displayResults = "I don't know what you are talking about."
+    displayDescendants (person, people);
     break;
     case "restart":
     app(people); // restart
@@ -127,12 +127,7 @@ function displayPerson(person){
 
   alert(personInfo);
 }
-/////////NEED TO: CONVERT DOB TO AGE - 
-////NEED function that changes spouse ID to spouse name or prints "none" if no spouse ID for this person
-////NEED function that changes parents ID to names 
 
-
-////NEEDS WORK - function that calculates age
 //function calculateAge(person) {
   ///let today = new Date();
   ///let age = today.getFullYear() - (person.dob).getFullYear();
@@ -144,7 +139,7 @@ function displayPerson(person){
   ///return age;
 ///}
 
-//NEEDS WORK - ON displaying names  vs objects
+//displaying names  vs objects//siblings
 function displayFamily(person, people){
   
   let spouse = getSpouse(person, people);
@@ -201,8 +196,29 @@ function getSpouse(foundPerson, people){
   })
   return personSiblings;
 }
+///framework for display descendants function
 
+function displayDescendants(foundPerson, people){
+  
+  let parents = getParents (foundPerson, people);
+  let children = getDescendants (person, people); 
+  let personChildren = "Children: " + children
 
+  alert("We found the following family members:" + "\n" + personChildren);
+}
+function getDescendants(foundPerson, people){
+  let personDescendants= people.filter(function(potentialDescendants){
+    
+    if(foundPerson.parents.includes(potentialDescendants.id)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  
+  })
+  return personDescendants;
+}
 
 
  // function that prompts and validates user input
